@@ -1,15 +1,14 @@
 #!/bin/bash
 
 # STEP 1: Create a new directory and Git repo
-mkdir gowtham-graph
-cd gowtham-graph
+mkdir gowtham-graph-2025
+cd gowtham-graph-2025
 git init
 
-# STEP 2: Define the starting Sunday (first column of GitHub graph)
-# GitHub graph starts on Sunday. We'll begin on Jan 7, 2024 (a Sunday)
-start_date="2025-01-07"
+# STEP 2: Define the starting Sunday of GitHub graph in 2025
+start_date="2025-01-05"
 
-# STEP 3: Function to add a commit on a specific day offset from start date
+# STEP 3: Function to create a backdated commit
 add_commit() {
   offset=$1
   date=$(date -d "$start_date +$offset days" +"%Y-%m-%dT12:00:00")
@@ -17,10 +16,7 @@ add_commit() {
   git commit --allow-empty -m "Commit for $date" > /dev/null
 }
 
-# STEP 4: Define pixel map for the name "GOWTHAM"
-# Each letter is 7x5 (rows x columns), 1 = commit, 0 = no commit
-# This pattern creates each letter as 7 vertical dots, space = 2 cols
-# Each '1' adds a green dot at that day
+# STEP 4: Commit pattern to draw "GOWTHAM"
 declare -a pattern=(
   # G
   "01110"
@@ -92,7 +88,7 @@ declare -a pattern=(
   "10001"
 )
 
-# STEP 5: Loop through the pattern and generate commits
+# STEP 5: Loop through pattern and make commits
 col=0
 for letter in "${pattern[@]}"; do
   for ((row=0; row<${#letter}; row++)); do
@@ -104,14 +100,18 @@ for letter in "${pattern[@]}"; do
   ((col++))
 done
 
-# STEP 6: Finalize and push to GitHub
+# STEP 6: Final commit and push instructions
 git branch -M main
-echo "# GitHub graph art for name 'Gowtham'" > README.md
+echo "# GitHub graph art for 'Gowtham' (2025)" > README.md
 git add .
 git commit -m "Add README"
-echo "✅ Now run the following to push:"
-echo "--------------------------------------------"
-echo "git remote add origin https://github.com/YOUR-USERNAME/gowtham-graph.git"
+
+echo ""
+echo "✅ Your commits for 2025 are ready!"
+echo "👉 Now create a new PUBLIC repo on GitHub (e.g., gowtham-graph-2025)"
+echo "👉 Then run these commands:"
+echo ""
+echo "git remote add origin https://github.com/YOUR-USERNAME/gowtham-graph-2025.git"
 echo "git push -u origin main"
-echo "--------------------------------------------"
-echo "📈 After pushing, your name 'Gowtham' will appear on your GitHub graph for 2024!"
+echo ""
+echo "📈 After pushing, check your GitHub profile — you'll see 'Gowtham' drawn in 2025!"
