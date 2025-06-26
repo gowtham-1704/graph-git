@@ -7,7 +7,7 @@ git init
 
 # STEP 2: Define the starting Sunday (first column of GitHub graph)
 # GitHub graph starts on Sunday. We'll begin on Jan 7, 2024 (a Sunday)
-start_date="2024-01-07"
+start_date="2025-01-07"
 
 # STEP 3: Function to add a commit on a specific day offset from start date
 add_commit() {
